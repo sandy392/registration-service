@@ -1,26 +1,26 @@
-package com.egiants.rlm.service;
+package com.egiants.rlm.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-import com.egiants.rlm.dao.UserDao;
 import com.egiants.rlm.externalmodel.User;
 
-@Service
-public class UserServiceImpl implements UserService {
+public class SpringDataUserDaoImpl implements UserDao {
 	
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userRepository;
 
 	@Override
 	public List<User> getUsers() {
-		return this.userDao.getUsers();
+		// TODO Auto-generated method stub
+		this.userRepository.findAll();
+		return new ArrayList<>();
 	}
 
 	@Override
-	public User getUser(String emailId) {
+	public User getUser(String emilId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void deleteUser(String emailId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
