@@ -1,7 +1,5 @@
 package com.egiants.rlm.entity;
 
-import java.time.ZonedDateTime;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
