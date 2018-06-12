@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.egiants.rlm.externalmodel.User;
+import com.egiants.rlm.entity.User;
 import com.egiants.rlm.service.UserService;
 
 @RestController
@@ -41,7 +41,7 @@ public class UserController {
 
 		// TODO: add MISMATCH identifier validation exception
 
-		return new ResponseEntity<>(this.userService.createUser(emailId, user), HttpStatus.CREATED);
+		return new ResponseEntity<>(this.userService.createUser(user), HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/{emailId}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE,
@@ -51,7 +51,7 @@ public class UserController {
 
 		// TODO: add MISMATCH identifier validation exception
 
-		return new ResponseEntity<>(this.userService.createOrUpdateUser(emailId, user), HttpStatus.CREATED);
+		return new ResponseEntity<>(this.userService.createOrUpdateUser(user), HttpStatus.CREATED);
 	}
 
 	@RequestMapping(value = "/{emailId}", method = RequestMethod.DELETE, produces = { MediaType.APPLICATION_JSON_VALUE,

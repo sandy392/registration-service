@@ -2,7 +2,8 @@ package com.egiants.rlm.service;
 
 import java.util.List;
 
-import com.egiants.rlm.externalmodel.User;
+import com.egiants.rlm.entity.User;
+
 
 public interface UserService {
 	
@@ -10,9 +11,9 @@ public interface UserService {
 	
 	User getUser(String emailId);
 	
-	User createUser(String emailId, User user);
+	User createUser(User user);
 	
-	User createOrUpdateUser(String emailId, User user);
+	User createOrUpdateUser(User user);
 	
 	void deleteUser(String emailId);
 

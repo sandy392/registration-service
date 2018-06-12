@@ -1,4 +1,4 @@
-package com.egiants.rlm.externalmodel;
+/*package com.egiants.rlm.externalmodel;
 
 import java.time.ZonedDateTime;
 
@@ -69,5 +69,5 @@ public class User {
 				+ ", lastModifiedDate=" + lastModifiedDate + "]";
 	}
 	
-
 }
+*/

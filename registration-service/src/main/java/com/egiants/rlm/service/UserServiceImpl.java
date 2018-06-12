@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.egiants.rlm.dao.UserDao;
-import com.egiants.rlm.externalmodel.User;
+import com.egiants.rlm.entity.User;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -26,13 +26,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User createUser(String emailId, User user) {
+	public User createUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public User createOrUpdateUser(String emailId, User user) {
+	public User createOrUpdateUser(User user) {
 		// TODO Auto-generated method stub
 		return null;
 	}
