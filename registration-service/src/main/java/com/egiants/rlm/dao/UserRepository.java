@@ -9,4 +9,5 @@ import com.egiants.rlm.entity.User;
 
 @EnableScan
 public interface UserRepository extends DynamoDBCrudRepository<User, String> {
+	
 }

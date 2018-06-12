@@ -21,26 +21,22 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(String emailId) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.userDao.getUser(emailId);
 	}
 
 	@Override
 	public User createUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.userDao.createUser(user);
 	}
 
 	@Override
 	public User createOrUpdateUser(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.userDao.createOrUpdateUser(user);
 	}
 
 	@Override
 	public void deleteUser(String emailId) {
-		// TODO Auto-generated method stub
-		
+		this.userDao.deleteUser(emailId);
 	}
 
 }
