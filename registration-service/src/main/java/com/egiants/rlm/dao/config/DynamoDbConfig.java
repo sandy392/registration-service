@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Region;
+import com.amazonaws.regions.Regions;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClient;
 import com.amazonaws.util.StringUtils;
@@ -29,7 +31,9 @@ public class DynamoDbConfig {
 		AmazonDynamoDB dynamoDB = new AmazonDynamoDBClient(amazonAWSCredentials());
  
 		if (!StringUtils.isNullOrEmpty(dBEndpoint)) {
+			
 			dynamoDB.setEndpoint(dBEndpoint);
+			 dynamoDB.setRegion(Region.getRegion(Regions.US_EAST_1));
 		}
  
 		return dynamoDB;

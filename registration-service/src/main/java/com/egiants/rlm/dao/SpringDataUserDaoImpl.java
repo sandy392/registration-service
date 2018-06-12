@@ -1,6 +1,6 @@
 package com.egiants.rlm.dao;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +18,14 @@ public class SpringDataUserDaoImpl implements UserDao {
 	@Override
 	public List<User> getUsers() {
 		// TODO Auto-generated method stub
-		Iterable<User> users = 
-				this.userRepository.findAll();
-		return new ArrayList<>();
+		Iterable<User> users = this.userRepository.findAll();
+		
+		return (List<User>) users;
 	}
-
 	@Override
 	public User getUser(String emailId) {
 		//TODO: add Resource not found exception if user is null
-		return this.userRepository.findById(emailId).orElse(null);
+		return this.userRepository.findOne(emailId);
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class SpringDataUserDaoImpl implements UserDao {
 	@Override
 	public void deleteUser(String emailId) {
 		
-		this.userRepository.deleteById(emailId);
+		this.userRepository.delete(emailId);
 	}
 
 }
