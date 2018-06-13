@@ -1,9 +1,6 @@
 package com.egiants.rlm.entity;
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable;
-
-import java.time.ZonedDateTime;
-
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBAttribute;
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey;
 
@@ -16,8 +13,8 @@ public class User {
 	private String role;
 	private String createdBy;
 	private String lastModifiedBy;
-	private ZonedDateTime createdDate;
-	private ZonedDateTime lastModifiedDate;
+	//private ZonedDateTime createdDate;
+	//private ZonedDateTime lastModifiedDate;
 
 	@DynamoDBAttribute(attributeName="firstName")
 	public String getFirstName() {
@@ -73,7 +70,7 @@ public class User {
 		this.lastModifiedBy = lastModifiedBy;
 	}
 	
-	public ZonedDateTime getCreatedDate() {
+	/*public ZonedDateTime getCreatedDate() {
 		return createdDate;
 	}
 	
@@ -88,7 +85,7 @@ public class User {
 	public void setLastModifiedDate(ZonedDateTime lastModifiedDate) {
 		this.lastModifiedDate = lastModifiedDate;
 	}
-	/*
+	
 	@Override
 	public String toString() {
 		return "User [firstName=" + firstName + ", lastName=" + lastName + ", emailId=" + emailId + ", role=" + role
