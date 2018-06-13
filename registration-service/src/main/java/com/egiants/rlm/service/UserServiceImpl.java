@@ -21,11 +21,13 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(String emailId) {
+		//TODO add exception
 		return this.userDao.getUser(emailId);
 	}
 
 	@Override
 	public User createUser(User user) {
+		//TODO: duplicate key exception
 		return this.userDao.createUser(user);
 	}
 
