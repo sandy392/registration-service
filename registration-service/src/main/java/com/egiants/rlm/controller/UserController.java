@@ -27,14 +27,14 @@ public class UserController {
 		return new ResponseEntity<>(this.userService.getUsers(), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{emailId}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/{emailId:.+}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> getUser(@PathVariable("emailId") String emailId) {
 
 		return new ResponseEntity<>(this.userService.getUser(emailId), HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/{emailId}", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/{emailId:.+}", method = RequestMethod.POST, consumes = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> createUser(@PathVariable("emailId") String emailId, @RequestBody User user) {
@@ -44,7 +44,7 @@ public class UserController {
 		return new ResponseEntity<>(this.userService.createUser(user), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{emailId}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE,
+	@RequestMapping(value = "/{emailId:.+}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<User> createOrUpdateUser(@PathVariable("emailId") String emailId, @RequestBody User user) {
@@ -54,9 +54,11 @@ public class UserController {
 		return new ResponseEntity<>(this.userService.createOrUpdateUser(user), HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{emailId}", method = RequestMethod.DELETE, produces = { MediaType.APPLICATION_JSON_VALUE,
-			MediaType.APPLICATION_XML_VALUE })
+	@RequestMapping(value = "/{emailId:.+}", method = RequestMethod.DELETE, produces = {
+			MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
 	public ResponseEntity<Void> deleteUser(@PathVariable("emailId") String emailId) {
+
+		System.out.println(emailId);
 
 		this.userService.deleteUser(emailId);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
