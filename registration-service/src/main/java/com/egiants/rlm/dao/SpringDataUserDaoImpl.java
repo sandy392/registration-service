@@ -34,6 +34,7 @@ public class SpringDataUserDaoImpl implements UserDao {
 	public User getUser(String emailId) {
 		// TODO: add Resource not found exception if user is null
 		return this.userRepository.findOne(emailId);
+
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class SpringDataUserDaoImpl implements UserDao {
 	@Override
 	public void deleteUser(String emailId) {
 
-		this.userRepository.delete(emailId);
+		this.userRepository.delete(userRepository.findOne(emailId));
 	}
 
 }
