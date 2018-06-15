@@ -27,6 +27,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user) {
+
 		UUID id = UUID.randomUUID();
 		user.setUid(id);
 		return this.userDao.createUser(user);
@@ -39,7 +40,6 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void deleteUser(String emailId) {
-		System.out.println(emailId);
 		this.userDao.deleteUser(emailId);
 	}
 

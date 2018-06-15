@@ -1,16 +1,10 @@
 package com.egiants.rlm.dao;
 
+import java.util.Date;
 import java.util.List;
 import com.egiants.rlm.dao.config.DynamoDbConfig;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
-import com.amazonaws.services.dynamodbv2.model.KeySchemaElement;
-import com.amazonaws.services.dynamodbv2.model.KeyType;
-import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
 import com.egiants.rlm.entity.User;
 
 @Repository
@@ -39,25 +33,15 @@ public class SpringDataUserDaoImpl implements UserDao {
 
 	@Override
 	public User createUser(User user) {
+		if (!userRepository.exists(user.getEmailId())) {
 
-		try {
+			Date newDate = new Date();
 
+			user.setCreatedDate(newDate);
+			user.setLastModifiedDate(newDate);
 			return this.userRepository.save(user);
-
-		} catch (Exception e) {
-
-			AmazonDynamoDB dynamoDB = dynamoDbConfig.amazonDynamoDB();
-
-			CreateTableRequest request = new CreateTableRequest().withTableName("User");
-
-			request.withKeySchema(new KeySchemaElement().withAttributeName("emailId").withKeyType(KeyType.HASH));
-
-			request.setProvisionedThroughput(
-					new ProvisionedThroughput().withReadCapacityUnits(1L).withWriteCapacityUnits(1L));
-
-			dynamoDB.createTable(request);
-
-			return this.userRepository.save(user);
+		} else {
+			return customUpdate(user);
 		}
 
 	}
@@ -65,13 +49,37 @@ public class SpringDataUserDaoImpl implements UserDao {
 	@Override
 	public User createOrUpdateUser(User user) {
 
-		return this.userRepository.save(user);
+		if (userRepository.exists(user.getEmailId())) {
+			return customUpdate(user);
+		} else {
+			return createUser(user);
+		}
+
 	}
 
 	@Override
 	public void deleteUser(String emailId) {
 
-		this.userRepository.delete(userRepository.findOne(emailId));
+		this.userRepository.delete(emailId);
+	}
+
+	public User customUpdate(User user) {
+
+		User old = userRepository.findOne(user.getEmailId());
+
+		/* not changing EmailId, CreatedBy, UUID, CreatedDate */
+
+		old.setFirstName(user.getFirstName());
+		old.setLastName(user.getLastName());
+		old.setRole(user.getRole());
+		old.setLastModifiedBy(user.getLastModifiedBy());
+
+		Date newDate = new Date();
+
+		old.setLastModifiedDate(newDate);
+
+		return this.userRepository.save(old);
+
 	}
 
 }

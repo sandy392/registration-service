@@ -47,7 +47,7 @@ public class UserController {
 	@RequestMapping(value = "/{emailId:.+}", method = RequestMethod.PUT, consumes = { MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
 					MediaType.APPLICATION_XML_VALUE })
-	public ResponseEntity<User> createOrUpdateUser(@PathVariable("emailId") String emailId, @RequestBody User user) {
+	public ResponseEntity<User> updateUser(@PathVariable("emailId") String emailId, @RequestBody User user) {
 
 		// TODO: add MISMATCH identifier validation exception
 
