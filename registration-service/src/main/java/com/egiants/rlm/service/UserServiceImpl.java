@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User getUser(String emailId) {
+		//TODO add exception
 		return this.userDao.getUser(emailId);
 	}
 
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 
 		UUID id = UUID.randomUUID();
 		user.setUid(id);
+		//TODO: duplicate key exception
 		return this.userDao.createUser(user);
 	}
 
